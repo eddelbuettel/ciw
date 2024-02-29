@@ -1,0 +1,15 @@
+Package: ciw
+Type: Package
+Title: Watch the CRAN Incoming Directories
+Version: 0.0.1
+Date: 2024-02-26
+Authors@R: person(given = "Dirk", family = "Eddelbuettel",
+                  role = c("aut", "cre"), email = "edd@debian.org",      
+                  comment = c(ORCID = "0000-0001-6419-907X"))
+Description: Directory reads and summaries are provided for one or more of the subdirectories
+ of the <https://cran.r-project.org/incoming/> directory, and a compact summary object is returned.
+ The package name is a contraption of 'CRAN Incoming Watcher'.
+License: GPL (>= 2)
+Imports: curl, XML, data.table (>= 1.5.0)
+Encoding: UTF-8
+RoxygenNote: 6.0.1
