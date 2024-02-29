@@ -1,0 +1,7 @@
+2024-02-29  Dirk Eddelbuettel  <edd@debian.org>
+
+	* README.md: Add a README
+
+2024-02-28  Dirk Eddelbuettel  <edd@debian.org>
+
+	* */*: Initial commit of fully working 0.0.1 draft
