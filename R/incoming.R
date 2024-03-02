@@ -9,6 +9,8 @@
 #' @param check A logical variable with a default of \sQuote{TRUE} indicating that the value
 #' of \sQuote{folder} should be check against a list of known values. Using \sQuote{FALSE}
 #' allows new values, or different combinations not supported by default.
+#' @param sort A logical variable with a default of \sQuote{TRUE} indicating that the overall
+#' result be sorted by column \sQuote{Age}.
 #' @return A \sQuote{data.table} object with first column \sQuote{folder} as well as columns
 #' for package name, upload time and size.
 #' @examples
@@ -17,10 +19,10 @@
 #' }
 incoming <- function(folder=c("auto", "archive", "inspect", "newbies", "pending", "pretest", "publish",
                               "recheck", "waiting", "BA", "KH", "KL", "UL", "VW"),
-                     check = TRUE) {
+                     check = TRUE, sort = TRUE) {
     if (check) {
         folder <- match.arg(folder)
-        if (folder == "auto") folder <- c("pending", "recheck", "inspect", "pretest")
+        if (folder == "auto") folder <- c("pending", "recheck", "inspect", "pretest", "waiting")
     }
     tz <- Sys.getenv("TZ", "UTC")
     now <- Sys.time()
@@ -38,7 +40,12 @@ incoming <- function(folder=c("auto", "archive", "inspect", "newbies", "pending"
         dir
     }
     mccdef <- if (Sys.info()[["sysname"]] == "Windows") 1L else 2L   # see ?parallel::mclapply
-    rbindlist(parallel::mclapply(folder, .read_one_folder, mc.cores = getOption("mc.cores", mccdef)))
+    rl <- parallel::mclapply(folder, .read_one_folder, mc.cores = getOption("mc.cores", mccdef))
+
+    res <- rbindlist(rl)
+    if (sort) res <- res[order(Age)]
+
+    res
 }
 
 utils::globalVariables(c("Name", "Time", "Age"))
