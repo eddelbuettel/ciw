@@ -6,7 +6,7 @@
 \usage{
 incoming(folder = c("auto", "archive", "inspect", "newbies", "pending",
   "pretest", "publish", "recheck", "waiting", "BA", "KH", "KL", "UL", "VW"),
-  check = TRUE)
+  check = TRUE, sort = TRUE)
 }
 \arguments{
 \item{folder}{A character variable correponding to one (or more) of the existing directories
@@ -17,6 +17,9 @@ to designate the combination of \sQuote{pending}, \sQuote{recheck}, \sQuote{insp
 \item{check}{A logical variable with a default of \sQuote{TRUE} indicating that the value
 of \sQuote{folder} should be check against a list of known values. Using \sQuote{FALSE}
 allows new values, or different combinations not supported by default.}
+
+\item{sort}{A logical variable with a default of \sQuote{TRUE} indicating that the overall
+result be sorted by column \sQuote{Age}.}
 }
 \value{
 A \sQuote{data.table} object with first column \sQuote{folder} as well as columns

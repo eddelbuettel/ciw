@@ -1,3 +1,8 @@
+2024-03-03  Dirk Eddelbuettel  <edd@debian.org>
+
+	* R/incoming.R: Use curl for parallel asynchronous downloads instead
+	of relying on R to fork for parallel reads, minor other edits
+
 2024-03-02  Dirk Eddelbuettel  <edd@debian.org>
 
 	* R/incoming.R: Add 'waiting' to default of 'auto', add

@@ -24,25 +24,39 @@ incoming <- function(folder=c("auto", "archive", "inspect", "newbies", "pending"
         folder <- match.arg(folder)
         if (folder == "auto") folder <- c("pending", "recheck", "inspect", "pretest", "waiting")
     }
+
+    url <- "https://cran.r-project.org/incoming"
+
+    ## use curl for parallel reads which requires a 'global' list object and callbacks
+    results <- list()
+    .success <- function(x) results <<- append(results, list(x))
+    .failure <- function(str) cat(paste("Failed request for", str), file = stderr())
+    for (fldr in folder) {
+        curl::multi_add(curl::new_handle(url = file.path(url, fldr)),
+                        done = .success,
+                        fail = .failure)
+    }
+    res <- curl::multi_run() 	# run multiple calls, 'results' filled as callback result
+
     tz <- Sys.getenv("TZ", "UTC")
     now <- Sys.time()
-    .read_one_folder <- function(folder) {
-        dirread <- curl::curl_fetch_memory(file.path("https://cran.r-project.org/incoming", folder))
-        dirtxt <- rawToChar(dirread[["content"]])
-        dir <- data.table::data.table(Folder=folder, XML::readHTMLTable(dirtxt)[[1]])
-        setnames(dir, "Last modified", "Time")
+
+    .transform_one_folder <- function(obj) { # worker function to transform obj returned by curl
+        folder <- basename(obj[["url"]])     # url is the actual URL called, we recover folder from it
+        txt <- rawToChar(obj[["content"]])   # content is the payload, by curl convention raw bytes
+        tab <- XML::readHTMLTable(txt)[[1]]  # extract the per-folder directory listing table
+        dir <- data.table::data.table(Folder=folder, tab) 	# and now some data.table munging
+        data.table::setnames(dir, "Last modified", "Time")
         dir <- dir[is.na(Name) == FALSE & Name != "Parent Directory", ]
         dir <- dir[, let(V1 = NULL,
                          Time = as.POSIXct(Time, tz="Europe/Vienna"),
-                         Description = NULL)][order(-Time)]
-        dir <- dir[, Time := as.POSIXct(format(Time, tz=tz))]
+                         Description = NULL)]
+        dir <- dir[order(-Time), Time := as.POSIXct(format(Time, tz=tz))]
         dir <- dir[, Age := round(difftime(now, Time, units="hours"), 2)]
         dir
     }
-    mccdef <- if (Sys.info()[["sysname"]] == "Windows") 1L else 2L   # see ?parallel::mclapply
-    rl <- parallel::mclapply(folder, .read_one_folder, mc.cores = getOption("mc.cores", mccdef))
 
-    res <- rbindlist(rl)
+    res <- rbindlist(lapply(results, .transform_one_folder))
     if (sort) res <- res[order(Age)]
 
     res
