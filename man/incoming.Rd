@@ -29,7 +29,5 @@ for package name, upload time and size.
 Summarizes the current state of the incoming queue at CRAN
 }
 \examples{
-\dontrun{
 incoming()
-}
 }

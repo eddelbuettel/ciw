@@ -14,9 +14,7 @@
 #' @return A \sQuote{data.table} object with first column \sQuote{folder} as well as columns
 #' for package name, upload time and size.
 #' @examples
-#' \dontrun{
 #' incoming()
-#' }
 incoming <- function(folder=c("auto", "archive", "inspect", "newbies", "pending", "pretest", "publish",
                               "recheck", "waiting", "BA", "KH", "KL", "UL", "VW"),
                      check = TRUE, sort = TRUE) {
@@ -26,6 +24,19 @@ incoming <- function(folder=c("auto", "archive", "inspect", "newbies", "pending"
     }
 
     url <- "https://cran.r-project.org/incoming"
+
+    .is_connected <- function(site) { 	     # this is borrowed from dang::isConnected()
+        uoc <- function(site) {
+            con <- url(site)                 # need to assign so that we can close
+            open(con)                        # in case of success we have a connection
+            close(con)                       # ... so we need to clean up
+        }
+        suppressWarnings(!inherits(try(uoc(site), silent=TRUE), "try-error"))
+    }
+    if (!.is_connected(url)) {
+        message("** No results as no connectivity to CRAN. **")
+        return(data.table())
+    }
 
     ## use curl for parallel reads which requires a 'global' list object and callbacks
     results <- list()
@@ -63,3 +74,4 @@ incoming <- function(folder=c("auto", "archive", "inspect", "newbies", "pending"
 }
 
 utils::globalVariables(c("Name", "Time", "Age"))
+
