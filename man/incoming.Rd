@@ -6,7 +6,7 @@
 \usage{
 incoming(folder = c("auto", "archive", "inspect", "newbies", "pending",
   "pretest", "publish", "recheck", "waiting", "BA", "KH", "KL", "UL", "VW"),
-  check = TRUE, sort = TRUE)
+  check = TRUE, sort = TRUE, ping = TRUE)
 }
 \arguments{
 \item{folder}{A character variable correponding to one (or more) of the existing directories
@@ -20,6 +20,9 @@ allows new values, or different combinations not supported by default.}
 
 \item{sort}{A logical variable with a default of \sQuote{TRUE} indicating that the overall
 result be sorted by column \sQuote{Age}.}
+
+\item{ping}{A logical variable with a default of \sQuote{TRUE} indicating that network
+connectivity should be checked first.}
 }
 \value{
 A \sQuote{data.table} object with first column \sQuote{folder} as well as columns

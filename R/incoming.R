@@ -11,13 +11,15 @@
 #' allows new values, or different combinations not supported by default.
 #' @param sort A logical variable with a default of \sQuote{TRUE} indicating that the overall
 #' result be sorted by column \sQuote{Age}.
+#' @param ping A logical variable with a default of \sQuote{TRUE} indicating that network
+#' connectivity should be checked first.
 #' @return A \sQuote{data.table} object with first column \sQuote{folder} as well as columns
 #' for package name, upload time and size.
 #' @examples
 #' incoming()
 incoming <- function(folder=c("auto", "archive", "inspect", "newbies", "pending", "pretest", "publish",
                               "recheck", "waiting", "BA", "KH", "KL", "UL", "VW"),
-                     check = TRUE, sort = TRUE) {
+                     check = TRUE, sort = TRUE, ping = TRUE) {
     if (check) {
         folder <- match.arg(folder)
         if (folder == "auto") folder <- c("pending", "recheck", "inspect", "pretest", "waiting")
@@ -33,7 +35,7 @@ incoming <- function(folder=c("auto", "archive", "inspect", "newbies", "pending"
         }
         suppressWarnings(!inherits(try(uoc(site), silent=TRUE), "try-error"))
     }
-    if (!.is_connected(url)) {
+    if (ping && !.is_connected(url)) {
         message("** No results as no connectivity to CRAN. **")
         return(data.table())
     }
