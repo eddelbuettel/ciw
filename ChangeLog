@@ -1,3 +1,8 @@
+2024-03-05  Dirk Eddelbuettel  <edd@debian.org>
+
+	* tests/simpleTests.R: Added basic tests
+	* tests/simpleTests.Rout.save: Added reference results
+
 2024-03-04  Dirk Eddelbuettel  <edd@debian.org>
 
 	* R/incoming.R: Add check for connectivity to CRAN, run example
