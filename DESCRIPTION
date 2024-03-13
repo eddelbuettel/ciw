@@ -11,5 +11,7 @@ Description: Directory reads and summaries are provided for one or more of the s
  The package name is a contraption of 'CRAN Incoming Watcher'.
 License: GPL (>= 2)
 Imports: curl, XML, data.table (>= 1.5.0)
+URL: https://github.com/eddelbuettel/ciw
+BugReports: https://github.com/eddelbuettel/ciw/issues
 Encoding: UTF-8
 RoxygenNote: 6.0.1
