@@ -26,9 +26,9 @@ and provides what is shown in the gif above.
 
 As the package is not (yet ?) on [CRAN][cran], you have to install it from this repository.
 
-The [littler](littler) script
+The [littler][littler] script
 [`installGithub.r`](https://github.com/eddelbuettel/littler/blob/master/inst/examples/ciw.r))
-(wrapping the corresponding function from [remotes](remotes)) can help. Or you can just clone the
+(wrapping the corresponding function from [remotes][remotes]) can help. Or you can just clone the
 repo and install locally.
 
 To also run `ciw.r` you need to either install [littler][littler] or just fetch the script (and

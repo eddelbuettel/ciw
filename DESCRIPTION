@@ -2,7 +2,7 @@ Package: ciw
 Type: Package
 Title: Watch the CRAN Incoming Directories
 Version: 0.0.1
-Date: 2024-02-26
+Date: 2024-03-12
 Authors@R: person(given = "Dirk", family = "Eddelbuettel",
                   role = c("aut", "cre"), email = "edd@debian.org",      
                   comment = c(ORCID = "0000-0001-6419-907X"))
