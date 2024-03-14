@@ -1,8 +1,11 @@
 
 ## ciw -- CRAN Incoming Watcher
 
+[![CI](https://github.com/eddelbuettel/ciw/actions/workflows/ci.yaml/badge.svg)](https://github.com/eddelbuettel/ciw/actions/workflows/ci.yaml)
 [![License](https://eddelbuettel.github.io/badges/GPL2+.svg)](https://www.gnu.org/licenses/gpl-2.0.html)
+[![CRAN](https://www.r-pkg.org/badges/version/ciw)](https://cran.r-project.org/package=ciw)
 [![r-universe](https://eddelbuettel.r-universe.dev/badges/ciw)](https://eddelbuettel.r-universe.dev/ciw)
+[![Dependencies](https://tinyverse.netlify.com/badge/ciw)](https://cran.r-project.org/package=ciw)
 [![Last Commit](https://img.shields.io/github/last-commit/eddelbuettel/ciw)](https://github.com/eddelbuettel/ciw)
 
 ### Example
@@ -24,12 +27,8 @@ and provides what is shown in the gif above.
 
 ### Installation
 
-As the package is not (yet ?) on [CRAN][cran], you have to install it from this repository.
-
-The [littler][littler] script
-[`installGithub.r`](https://github.com/eddelbuettel/littler/blob/master/inst/examples/ciw.r))
-(wrapping the corresponding function from [remotes][remotes]) can help. Or you can just clone the
-repo and install locally.
+The package is on [CRAN][cran] and can be installed via a simple `install.packages("ciw")`.
+Alternatively you can install it from here or from [r-universe][r-universe ciw].
 
 To also run `ciw.r` you need to either install [littler][littler] or just fetch the script (and
 maybe tweak it for `Rscript` use of [docopt][docopt]).
@@ -47,3 +46,4 @@ GPL (>= 2)
 [littler]: https://cran.r-project.org/package=littler
 [remotes]: https://cran.r-project.org/package=remotes
 [docopt]: https://cran.r-project.org/package=docopt
+[r-universe ciw]: https://eddelbuettel.r-universe.dev/ciw
