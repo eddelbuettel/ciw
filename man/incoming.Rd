@@ -2,10 +2,15 @@
 % Please edit documentation in R/incoming.R
 \name{incoming}
 \alias{incoming}
+\alias{ciw}
 \title{Report on the incoming queue at CRAN}
 \usage{
 incoming(folder = c("auto", "archive", "inspect", "newbies", "pending",
   "pretest", "publish", "recheck", "waiting", "BA", "KH", "KL", "UL", "VW"),
+  check = TRUE, sort = TRUE, ping = TRUE)
+
+ciw(folder = c("auto", "archive", "inspect", "newbies", "pending", "pretest",
+  "publish", "recheck", "waiting", "BA", "KH", "KL", "UL", "VW"),
   check = TRUE, sort = TRUE, ping = TRUE)
 }
 \arguments{

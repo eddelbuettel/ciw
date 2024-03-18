@@ -1,6 +1,5 @@
 \name{ciw-package}
 \alias{ciw-package}
-\alias{ciw}
 \docType{package}
 \title{\packageTitle{ciw}}
 \description{\packageDescription{ciw}}

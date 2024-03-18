@@ -75,5 +75,8 @@ incoming <- function(folder=c("auto", "archive", "inspect", "newbies", "pending"
     res
 }
 
+#' @rdname incoming
+ciw <- incoming
+
 utils::globalVariables(c("Name", "Time", "Age"))
 

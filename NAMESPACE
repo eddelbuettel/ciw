@@ -1,3 +1,4 @@
+export(ciw)
 export(incoming)
 import(data.table)
 importFrom(XML,readHTMLTable)

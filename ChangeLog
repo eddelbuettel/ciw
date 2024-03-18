@@ -1,3 +1,10 @@
+2024-03-17  Dirk Eddelbuettel  <edd@debian.org>
+
+	* R/incoming.R (ciw): Define as alias for incoming()
+	* man/incoming.Rd: Document alias 'ciw'
+	* man/ciw-package.Rd: Remove package alias 'ciw'
+	* NAMESPACE: Export 'ciw'
+
 2024-03-13  Dirk Eddelbuettel  <edd@debian.org>
 
 	* README.md: Add three more badges, edits
