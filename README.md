@@ -5,7 +5,7 @@
 [![License](https://eddelbuettel.github.io/badges/GPL2+.svg)](https://www.gnu.org/licenses/gpl-2.0.html)
 [![CRAN](https://www.r-pkg.org/badges/version/ciw)](https://cran.r-project.org/package=ciw)
 [![r-universe](https://eddelbuettel.r-universe.dev/badges/ciw)](https://eddelbuettel.r-universe.dev/ciw)
-[![Dependencies](https://tinyverse.netlify.com/badge/ciw)](https://cran.r-project.org/package=ciw)
+[![Dependencies](https://tinyverse.netlify.app/badge/ciw)](https://cran.r-project.org/package=ciw)
 [![Last Commit](https://img.shields.io/github/last-commit/eddelbuettel/ciw)](https://github.com/eddelbuettel/ciw)
 
 ### Example
