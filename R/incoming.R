@@ -14,11 +14,13 @@
 #' result be sorted by column \sQuote{Age}.
 #' @param ping A logical variable with a default of \sQuote{TRUE} indicating that network
 #' connectivity should be checked first.
+#' @param max_age A numerical value with the maximum age (in hours) for packages to be displayed;
+#' default is 168 (i.e. seven days).
 #' @return A \sQuote{data.table} object with first column \sQuote{folder} as well as columns
 #' for package name, upload time and size.
 #' @examples
 #' incoming()
-incoming <- function(folder=c("auto", known_folders), check = TRUE, sort = TRUE, ping = TRUE) {
+incoming <- function(folder=c("auto", known_folders), check = TRUE, sort = TRUE, ping = TRUE, max_age = 168) {
     if (check) {
         folder <- match.arg(folder)
         if (folder == "auto") folder <- c("pending", "recheck", "inspect", "pretest", "waiting")
@@ -74,7 +76,7 @@ incoming <- function(folder=c("auto", known_folders), check = TRUE, sort = TRUE,
     }
 
     res <- rbindlist(lapply(results, .transform_one_folder))
-    if (sort && nrow(res) > 0) res <- res[order(Age)]
+    if (sort && nrow(res) > 0) res <- res[Age < max_age][order(Age)]
 
     res
 }

@@ -3,6 +3,14 @@
 \newcommand{\ghpr}{\href{https://github.com/eddelbuettel/ciw/pull/#1}{##1}}
 \newcommand{\ghit}{\href{https://github.com/eddelbuettel/ciw/issues/#1}{##1}}
 
+\section{Changes in version 0.0.3 (2024-07-07)}{
+  \itemize{
+    \item The README.md now also display a dependency badge 
+    \item Argument \code{max_age} limits age (in hours) of displayed
+    packages
+  }
+}
+
 \section{Changes in version 0.0.2 (2024-03-20)}{
   \itemize{
     \item The package README and DESCRIPTION have been expanded

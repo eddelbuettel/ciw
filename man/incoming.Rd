@@ -12,10 +12,10 @@ the (currently) known directory names \dQuote{archive}, \dQuote{inspect}, \dQuot
 \dQuote{BA}, \dQuote{KH}, \dQuote{KL}, \dQuote{UL}, and \dQuote{VW}.}
 \usage{
 incoming(folder = c("auto", known_folders), check = TRUE, sort = TRUE,
-  ping = TRUE)
+  ping = TRUE, max_age = 168)
 
 ciw(folder = c("auto", known_folders), check = TRUE, sort = TRUE,
-  ping = TRUE)
+  ping = TRUE, max_age = 168)
 
 known_folders
 }
@@ -34,6 +34,9 @@ result be sorted by column \sQuote{Age}.}
 
 \item{ping}{A logical variable with a default of \sQuote{TRUE} indicating that network
 connectivity should be checked first.}
+
+\item{max_age}{A numerical value with the maximum age (in hours) for packages to be displayed;
+default is 168 (i.e. seven days).}
 }
 \value{
 A \sQuote{data.table} object with first column \sQuote{folder} as well as columns
